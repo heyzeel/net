@@ -9,7 +9,7 @@ import animationData from "../animation/indicator.json"
 
 import io from 'socket.io-client'
 
-const ENDPOINT = '${import.meta.env.VITE_URL}';
+const ENDPOINT = `${import.meta.env.VITE_URL}`;
 let socket, selectedChatCompare;
 
 const OpenedChatBox = () => {
