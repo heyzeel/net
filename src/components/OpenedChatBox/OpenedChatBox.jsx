@@ -51,6 +51,7 @@ const OpenedChatBox = () => {
                 console.log(error)
             }
         }
+        listRef.current?.scrollIntoView({ behavior: "smooth" })
     }
     const fetchMessages = async () => {
         if (!openedChat) return;
@@ -101,7 +102,6 @@ const OpenedChatBox = () => {
                 setMessages([...messages, newMessageRecieved])
             }
         })
-        listRef.current?.scrollIntoView({ behavior: "smooth" })
     })
 
     useEffect(()=>{
