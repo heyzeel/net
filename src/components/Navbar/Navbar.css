@@ -81,4 +81,7 @@
     .menu-icon{
         display: flex;
     }
+    .Navbar{
+        height: 7vh;
+    }
 }

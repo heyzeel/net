@@ -111,12 +111,11 @@
 @media(width<=600px){
     .chat-container{
         grid-template-columns: 1fr;
+        height: 91vh;
     }
     #show{
         display: flex;
         gap: 20px;
-        /* justify-content: space-around; */
-        /* align-items: center; */
         position: absolute;
         left: 0px;
     }
@@ -125,5 +124,8 @@
     }
     .show-contact{
         display: flex;
+    }
+    .contact-list{
+        height: auto;
     }
 }
