@@ -46,6 +46,7 @@ const Chat = () => {
   }
 
   useEffect(() => {
+    console.log(user)
     fetchChat();
   }, [loading, fetchAgain])
 

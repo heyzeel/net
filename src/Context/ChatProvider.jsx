@@ -35,7 +35,10 @@ const ChatProvider = ({ children }) => {
             else if(!server){
                 checkServer()
             }
-    }, [navigate])
+            else{
+                setLoading(false)
+            }
+    }, [navigate,server])
 
     useEffect(()=>{
         if(user)setLoading(false)
