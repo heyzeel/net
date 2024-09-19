@@ -14,7 +14,7 @@ const Chat = () => {
     navigate("/")
   }
 
-  const { user, setContactList,setOpenedChat, loading, fetchAgain, } = ChatState();
+  const { user, setContactList,setOpenedChat, loading, fetchAgain, setFetchAgain} = ChatState();
 
   const [searchedUsers, setSearchedUser] = useState();
   const [showContact, setShowContact] = useState(true)
@@ -33,6 +33,7 @@ const Chat = () => {
     setShowSearch(false)
     setSearchedUser()
     setChatLoading(false)
+    setFetchAgain(!fetchAgain)
   }
 
   const fetchChat = async () => {
