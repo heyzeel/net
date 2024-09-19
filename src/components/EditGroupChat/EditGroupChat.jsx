@@ -38,7 +38,6 @@ const EditGroupChat = ({setShowEditGroup}) => {
                 Authorization:`Bearer ${user.token}`
             }
         })
-       console.log(addUser)
     }
 
     const handleRemove = async(UserId) => {
@@ -53,7 +52,6 @@ const EditGroupChat = ({setShowEditGroup}) => {
                     Authorization:`Bearer ${user.token}`
                 }
             })
-           console.log(removeUser)
            setUpdateUsers(old => old.filter(i => i._id !== UserId))
     }
 
@@ -73,9 +71,9 @@ const EditGroupChat = ({setShowEditGroup}) => {
                 }
             }
         )
+        console.log(groupName)
         setLoading(true)
         setOpenedChat()
-        console.log(groupName)
     }
     useEffect(() => {
         handleSearch()

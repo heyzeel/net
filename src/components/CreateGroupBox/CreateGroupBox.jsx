@@ -42,7 +42,6 @@ const CreateGroupBox = (props) => {
                 Authorization: `Bearer ${user.token}`
             }
         })
-        console.log(gchat)
         props.setCreateBox(false)
     }
 

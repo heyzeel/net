@@ -14,7 +14,7 @@ const Chat = () => {
     navigate("/")
   }
 
-  const { user, setContactList, openedChat,setOpenedChat, loading, fetchAgain, notification, setNotification} = ChatState();
+  const { user, setContactList,setOpenedChat, loading, fetchAgain, } = ChatState();
 
   const [searchedUsers, setSearchedUser] = useState();
   const [showContact, setShowContact] = useState(true)
@@ -51,7 +51,7 @@ const Chat = () => {
 
   return (
     <>
-      {!chatLoading &&
+      {!chatLoading&&
         <div>
           <Navbar logout={logout} setShowSearch={setShowSearch} setShowContact={setShowContact}/>
 

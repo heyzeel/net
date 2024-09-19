@@ -8,9 +8,10 @@ import { ChatState } from '../Context/ChatProvider';
 
 
 const SignUp = (props) => {
+  const { setLoading } = ChatState()
   const navigate = useNavigate();
   const [picture, setPic] = useState();
-  const [loading, setLoading] = useState(false)
+  const [imageLoading, setImageLoading] = useState(false)
   const [showPass, setShowPass] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -27,17 +28,18 @@ const SignUp = (props) => {
         "Content-Type": "application/json",
       }
     }).then(res => user = res.data)
-    
-    if(user.token){
-      localStorage.setItem('userInfo',JSON.stringify({_id:user._id, name : user.name, email : user.email, pic:user.pic, token: user.token}))
-      const authUser = JSON.parse(localStorage.getItem('userInfo')) 
-      if(authUser) {navigate("/chat")}
+
+    if (user.token) {
+      localStorage.setItem('userInfo', JSON.stringify({ _id: user._id, name: user.name, email: user.email, pic: user.pic, token: user.token }))
+      const authUser = JSON.parse(localStorage.getItem('userInfo'))
+      if (authUser) { navigate("/chat") }
+      setLoading(true)
     }
-    
+
   }
 
   useEffect(() => {
-    loading && postUser()
+    imageLoading && postUser()
   }, [formData.pic])
 
   const handleChange = (e) => {
@@ -58,7 +60,7 @@ const SignUp = (props) => {
         await axios.post(`${import.meta.env.VITE_URL}/api/user/profile`, data)
           .then(res => { setFormData({ ...formData, pic: res.data.url }) })
           .then(er => console.log(er))
-        setLoading(true)
+        setImageLoading(true)
       }
       else {
         postUser()
@@ -68,7 +70,7 @@ const SignUp = (props) => {
 
   return (
     <div className='sign-container'>
-    <h1>Welcome to Charcha</h1>
+      <h1>Welcome to Charcha</h1>
       <div className='sign-form'>
         <input type='text' name='name' placeholder='Name' onChange={handleChange} value={formData.username}></input>
 
@@ -84,8 +86,8 @@ const SignUp = (props) => {
         <div className='pic-selector-container'>
           Upload Profile (optional) :
           <label>
-          <FiUploadCloud className='upload-icon'/>
-          <input type='file' accept='image/*' id='pic-selector' onChange={(e) => { setPic(e.target.files[0]) }} name='avatar'/>
+            <FiUploadCloud className='upload-icon' />
+            <input type='file' accept='image/*' id='pic-selector' onChange={(e) => { setPic(e.target.files[0]) }} name='avatar' />
           </label>
         </div>
 
@@ -93,7 +95,7 @@ const SignUp = (props) => {
 
         <input type='submit' value='Sing Up' className='sign-btn' onClick={submitSignUp}></input>
         <div className='sign-bottom'>
-          <span>Already a member?<Link onClick={()=>props.setState(false)}>Login now</Link></span>
+          <span>Already a member?<Link onClick={() => props.setState(false)}>Login now</Link></span>
         </div>
       </div>
     </div>

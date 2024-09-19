@@ -1,0 +1,12 @@
+.server-loading{
+    width: 100%;
+    height: 100vh;
+    background-size: contain;
+    display: flex;
+    align-items: center;
+}
+
+.loading-message{
+    display: flex;
+    padding: 50px;
+}

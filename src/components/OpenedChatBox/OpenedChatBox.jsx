@@ -15,6 +15,7 @@ let socket, selectedChatCompare;
 const OpenedChatBox = () => {
     const listRef = useRef(null);
     const { openedChat, user, notification, setNotification, setFetchAgain} = ChatState();
+    const [chatLoading, setChatLoading] = useState(true)
     const [loading, setLoading] = useState(false)
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState();
@@ -29,6 +30,11 @@ const OpenedChatBox = () => {
         socket.on("typing",()=>setIsTyping(true))
         socket.on("stop typing",()=>setIsTyping(false))
     },[])
+    useEffect(()=>{
+        if(openedChat){
+            setLoading(false)
+        }
+    },[openedChat])
 
     const sendMessage = async (event) => {
         if (event.key === 'Enter' && newMessage) {
@@ -113,7 +119,6 @@ const OpenedChatBox = () => {
             var timeDiff = timeNow-lastTypeTime;
 
             if(timeDiff >= timerLength && typing){
-                console.log("entered")
                 socket.emit("stop typing", openedChat._id);
                 setTyping(false)
             }
@@ -130,6 +135,8 @@ const OpenedChatBox = () => {
       };
 
     return (
+            <>
+            {openedChat.chatName&&
         <div className='OpenedChatBox-container'>
             {!openedChat.isGroupChat ? <h2>{openedChat.users[0].name === user.name ? openedChat.users[1].name : openedChat.users[0].name}</h2> :
                 <GroupChatHeader />
@@ -170,6 +177,8 @@ const OpenedChatBox = () => {
                 <input type='text' value={newMessage} onKeyDown={sendMessage} onChange={typingHandler}></input>
             </div>
         </div>
+            }
+        </>
     )
 }
 

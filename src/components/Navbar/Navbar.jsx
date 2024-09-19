@@ -10,7 +10,6 @@ import { getSender } from '../../config/ChatLogic';
 const Navbar = (props) => {
   const { user, notification,setNotification, setOpenedChat} = ChatState();
   const [showNoti, setShowNoti] = useState(false);
-  console.log(notification)
   return (
     <div className='Navbar'>
       <div className='icon-container'>

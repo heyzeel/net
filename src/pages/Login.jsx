@@ -22,20 +22,19 @@ const Login = (props) => {
 
   const login = async () => {
     try {
-      setLoading(true)
       let user=false;
       await axios.post(`${import.meta.env.VITE_URL}/api/user/login`, formData, {
         headers: {
           "Content-Type": "application/json",
         }
       }).then(res =>user = res.data)
-      console.log(user.su)
       
       if(user.success){
         localStorage.setItem('userInfo', JSON.stringify({ _id: user._id, name: user.name, email: user.email, pic: user.pic, token: user.token }));
   
         const authUser = JSON.parse(localStorage.getItem('userInfo'));
         if (authUser) { navigate("/chat") }
+        setLoading(true)
       }
       else{
         alert("user not found!")
